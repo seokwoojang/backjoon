@@ -9,18 +9,18 @@ for i in range(m):
     a, b = map(int,input().split())
     g[a].append(b)
     g[b].append(a)
-    g[a].sort()
 
-visited = [False] * (n+1)
+for i in g:
+    i.sort()
 
-def dfs(g,v,visited):
+def dfs(v):
     visited[v] = True
     print(v, end=' ')
     for i in g[v]:
         if not visited[i]:
-            dfs(g,i,visited)
+            dfs(i)
 
-def bfs(g,start,visited):
+def bfs(start):
     queue = deque([start])
 
     visited[start] = True
@@ -34,7 +34,8 @@ def bfs(g,start,visited):
                 queue.append(i)
                 visited[i] = True
 
-dfs(g,v,visited)
+visited = [False] * (n+1)
+dfs(v)
 print()
 visited = [False] * (n+1)
-bfs(g,v,visited)
+bfs(v)
